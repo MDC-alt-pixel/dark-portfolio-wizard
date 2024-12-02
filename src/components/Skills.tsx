@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Code2, Scale, Database, Cube, MonitorPlay, BookOpen } from "lucide-react";
+import { Code2, Scale, Database, Box, MonitorPlay, BookOpen } from "lucide-react";
 
 const skills = [
   {
@@ -13,7 +13,7 @@ const skills = [
     description: "Certifié en analyse de données chez Expert-Tech"
   },
   {
-    icon: <Cube className="w-8 h-8" />,
+    icon: <Box className="w-8 h-8" />,
     title: "Modélisation 3D",
     description: "Création de modèles et animations 3D"
   },
