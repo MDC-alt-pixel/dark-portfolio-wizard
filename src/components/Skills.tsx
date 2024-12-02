@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Code2, Scale, Database, Box, MonitorPlay, BookOpen } from "lucide-react";
+import { Code2, Scale, Database, Box, MonitorPlay, BookOpen, Presentation } from "lucide-react";
 
 const skills = [
   {
@@ -28,9 +28,9 @@ const skills = [
     description: "Formation et accompagnement en nouvelles technologies"
   },
   {
-    icon: <BookOpen className="w-8 h-8" />,
-    title: "Recherche",
-    description: "Recherche académique en droit du numérique"
+    icon: <Presentation className="w-8 h-8" />,
+    title: "Conférencier",
+    description: "Animation de conférences et ateliers sur le numérique"
   }
 ];
 
