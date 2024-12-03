@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
-import { DollarSign, Users, CreditCard, Activity } from "lucide-react";
+import { DollarSign, Users, CreditCard, Activity, ArrowUpRight, ArrowDownRight } from "lucide-react";
 
 // Sample data for the chart
 const chartData = [
@@ -10,7 +10,6 @@ const chartData = [
   { month: 'Apr', amount: 2800 },
   { month: 'May', amount: 3800 },
   { month: 'Jun', amount: 4300 },
-  // ... more months
 ];
 
 // Sample data for recent transactions
@@ -26,58 +25,62 @@ const Dashboard = () => {
     <div className="p-6 space-y-6 bg-background min-h-screen">
       {/* Header Stats */}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        <Card>
+        <Card className="bg-white/5 backdrop-blur-lg border-0">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Revenue</CardTitle>
+            <CardTitle className="text-sm font-medium text-muted-foreground">Total Revenue</CardTitle>
             <DollarSign className="h-4 w-4 text-primary" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">$27,350</div>
-            <p className="text-xs text-muted-foreground">
-              +20.1% from last month
-            </p>
+            <div className="flex items-center space-x-2 text-xs text-green-500">
+              <ArrowUpRight className="h-4 w-4" />
+              <span>20.1% from last month</span>
+            </div>
           </CardContent>
         </Card>
-        <Card>
+        <Card className="bg-white/5 backdrop-blur-lg border-0">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Active Users</CardTitle>
+            <CardTitle className="text-sm font-medium text-muted-foreground">Active Users</CardTitle>
             <Users className="h-4 w-4 text-primary" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">3,205</div>
-            <p className="text-xs text-muted-foreground">
-              +180 new users
-            </p>
+            <div className="flex items-center space-x-2 text-xs text-green-500">
+              <ArrowUpRight className="h-4 w-4" />
+              <span>+180 new users</span>
+            </div>
           </CardContent>
         </Card>
-        <Card>
+        <Card className="bg-white/5 backdrop-blur-lg border-0">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Sales</CardTitle>
+            <CardTitle className="text-sm font-medium text-muted-foreground">Sales</CardTitle>
             <CreditCard className="h-4 w-4 text-primary" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">$4,750</div>
-            <p className="text-xs text-muted-foreground">
-              +7% from last month
-            </p>
+            <div className="flex items-center space-x-2 text-xs text-red-500">
+              <ArrowDownRight className="h-4 w-4" />
+              <span>-7% from last month</span>
+            </div>
           </CardContent>
         </Card>
-        <Card>
+        <Card className="bg-white/5 backdrop-blur-lg border-0">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Active Now</CardTitle>
+            <CardTitle className="text-sm font-medium text-muted-foreground">Active Now</CardTitle>
             <Activity className="h-4 w-4 text-primary" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">573</div>
-            <p className="text-xs text-muted-foreground">
-              +201 since last hour
-            </p>
+            <div className="flex items-center space-x-2 text-xs text-green-500">
+              <ArrowUpRight className="h-4 w-4" />
+              <span>+201 since last hour</span>
+            </div>
           </CardContent>
         </Card>
       </div>
 
       {/* Chart Section */}
-      <Card className="col-span-4">
+      <Card className="col-span-4 bg-white/5 backdrop-blur-lg border-0">
         <CardHeader>
           <CardTitle>Revenue Overview</CardTitle>
         </CardHeader>
@@ -91,9 +94,21 @@ const Dashboard = () => {
                     <stop offset="95%" stopColor="#9b87f5" stopOpacity={0}/>
                   </linearGradient>
                 </defs>
-                <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
-                <XAxis dataKey="month" className="text-xs" />
-                <YAxis className="text-xs" />
+                <CartesianGrid strokeDasharray="3 3" className="stroke-muted/20" />
+                <XAxis 
+                  dataKey="month" 
+                  className="text-xs" 
+                  stroke="#666"
+                  tickLine={false}
+                  axisLine={false}
+                />
+                <YAxis 
+                  className="text-xs" 
+                  stroke="#666"
+                  tickLine={false}
+                  axisLine={false}
+                  tickFormatter={(value) => `$${value}`}
+                />
                 <Tooltip 
                   contentStyle={{ 
                     backgroundColor: '#1A1F2C',
@@ -105,6 +120,7 @@ const Dashboard = () => {
                   type="monotone"
                   dataKey="amount"
                   stroke="#9b87f5"
+                  strokeWidth={2}
                   fillOpacity={1}
                   fill="url(#colorRevenue)"
                 />
@@ -115,7 +131,7 @@ const Dashboard = () => {
       </Card>
 
       {/* Recent Transactions */}
-      <Card>
+      <Card className="bg-white/5 backdrop-blur-lg border-0">
         <CardHeader>
           <CardTitle>Recent Transactions</CardTitle>
         </CardHeader>
@@ -124,7 +140,7 @@ const Dashboard = () => {
             {recentTransactions.map((transaction) => (
               <div
                 key={transaction.id}
-                className="flex items-center justify-between p-4 rounded-lg bg-secondary/10"
+                className="flex items-center justify-between p-4 rounded-lg bg-white/5"
               >
                 <div className="space-y-1">
                   <p className="text-sm font-medium">{transaction.description}</p>
