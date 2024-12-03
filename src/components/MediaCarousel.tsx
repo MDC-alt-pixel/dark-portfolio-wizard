@@ -18,7 +18,6 @@ type MediaItem = {
 export const MediaCarousel = () => {
   // State to store media items from Google Drive
   const [mediaItems] = useState<MediaItem[]>([
-    // Placeholder items - replace with actual Google Drive integration
     { 
       id: "placeholder1", 
       type: "image", 
@@ -35,28 +34,23 @@ export const MediaCarousel = () => {
 
   return (
     <section className="section-padding bg-gradient-to-b from-background to-background/50">
-      {/* Section title */}
-      <h2 className="text-3xl font-bold text-center mb-8 gradient-text">
+      <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 gradient-text">
         Mes Réalisations
       </h2>
 
-      {/* Carousel component for media display */}
-      <Carousel className="w-full max-w-4xl mx-auto">
+      <Carousel className="w-full max-w-4xl mx-auto px-4">
         <CarouselContent>
           {mediaItems.map((item) => (
-            <CarouselItem key={item.id} className="md:basis-1/2 lg:basis-1/3">
+            <CarouselItem key={item.id} className="basis-full sm:basis-1/2 lg:basis-1/3 pl-4">
               <div className="flex flex-col gap-4">
-                {/* Media container */}
                 <div className="relative aspect-video rounded-lg overflow-hidden bg-secondary/20">
-                  {/* Placeholder for Google Drive media */}
                   <div className="absolute inset-0 flex items-center justify-center">
                     <p className="text-gray-400">{item.title}</p>
                   </div>
                 </div>
-                {/* Description below the media */}
                 <div className="p-4 bg-secondary/10 rounded-lg">
-                  <h3 className="font-heading text-lg mb-2">{item.title}</h3>
-                  <p className="text-sm text-gray-300">
+                  <h3 className="font-heading text-base md:text-lg mb-2">{item.title}</h3>
+                  <p className="text-xs md:text-sm text-gray-300">
                     {item.description}
                   </p>
                 </div>
@@ -64,8 +58,10 @@ export const MediaCarousel = () => {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious />
-        <CarouselNext />
+        <div className="hidden sm:block">
+          <CarouselPrevious />
+          <CarouselNext />
+        </div>
       </Carousel>
     </section>
   );
